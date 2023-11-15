@@ -5,15 +5,17 @@
               nzBreakpoint="md"
               [(nzCollapsed)]="isCollapsed"
               [nzTrigger]="null">
-      <div class="sidebar-logo">
-        <h1><span nz-icon nzType="bug" nzTheme="outline"></span></h1>
-        <h1>RNN ABC</h1>
+      <div class="sidebar-logo" >
+        <a routerLink="/welcome">
+          <img src="https://svgcrown.com/file/pug/1.png" alt=":(">
+          <h1>RNN ABC</h1>
+        </a>
       </div>
       <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
         <li nz-submenu nzOpen nzTitle="Teoria" nzIcon="read">
           <ul>
             <li nz-menu-item nzMatchRouter>
-              <a>Czym są</a>
+              <a routerLink="/what-are-RNN">Czym są</a>
             </li>
             <li nz-menu-item nzMatchRouter>
               <a>Po co</a>
@@ -48,8 +50,8 @@
           <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
               <span class="trigger"
                  nz-icon
-                 [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-              ></span>
+                 [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'">
+              </span>
           </span>
         </div>
       </nz-header>

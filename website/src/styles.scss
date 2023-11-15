@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+h1, h2, h3 {
+    color: #444;
+}
+
+.bottom-nav {
+    padding: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
