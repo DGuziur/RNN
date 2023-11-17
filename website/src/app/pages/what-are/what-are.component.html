@@ -1,4 +1,77 @@
-<p>what-are works!</p>
+<h2>Ale czym to tak właściwie jest?</h2>
+<p>
+  Sieci Neuronowe Rekurencyjne (RNN) to rodzaj sieci neuronowej,
+  która ma zdolność do przetwarzania danych sekwencyjnych i 
+  uwzględniania kontekstu poprzednich informacji. 
+  W odróżnieniu od tradycyjnych sieci neuronowych, 
+  RNN posiadają pamięć wewnętrzną, co pozwala im przechowywać informacje na 
+  temat wcześniejszych kroków sekwencji.
+</p>
+<h2>Budowa RNN</h2>
+<p>
+  Podstawowym elementem struktury RNN jest rekurencyjna jednostka 
+  (ang. recurrent unit), która pozwala na przekazywanie informacji z 
+  jednego kroku sekwencji do kolejnego. W prostszych słowach, 
+  RNN mają zdolność do "pamiętania" lub uwzględniania wcześniejszych 
+  kroków w procesie podejmowania decyzji w bieżącym kroku.
+</p>
+<div class="image-container">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Recurrent_neural_network_unfold.svg/500px-Recurrent_neural_network_unfold.svg.png">
+</div>
+<h2>Zalety</h2>
+<ul>
+    <li>
+      <h3>Przetwarzanie danych sekwencyjnych:</h3>
+      <p>
+        RNN są skuteczne w analizie danych sekwencyjnych, 
+        takich jak tekst, czasowe szeregi danych, dźwięk czy obrazy w sekwencji. 
+        Ich zdolność do zachowywania kontekstu historycznego czyni 
+        je użytecznym narzędziem w wielu dziedzinach.
+      </p>
+    </li>
+    <li>
+        <h3>Modelowanie zależności czasowych:</h3>
+      <p> 
+        RNN są idealne do modelowania zależności czasowych między 
+        elementami sekwencji. Dzięki temu są często stosowane w prognozowaniu, 
+        tłumaczeniu maszynowym i rozpoznawaniu mowy.
+      </p>
+    </li>
+    <li>
+      <h3>Dynamiczne przystosowywanie się:</h3>
+      <p>
+        RNN mogą dostosowywać swoje wewnętrzne reprezentacje w 
+        trakcie przetwarzania sekwencji, co pozwala im na radzenie sobie 
+        z różnymi długościami sekwencji.
+      </p>
+    </li>
+</ul>
+<h2>Wady</h2>
+<ul>
+    <li>
+      <h3>Problem zanikającego gradientu:</h3>
+      <p>
+        RNN mogą mieć trudności z utrzymaniem informacji na bardzo długie okresy 
+        czasu, co jest znane jako problem z długotrwałymi zależnościami 
+        (ang. vanishing gradient problem).
+      </p>
+    </li>
+    <li>
+      <h3>Długi proces nauki:</h3>
+      <p>
+        Przetwarzanie sekwencji krok po kroku może być obliczeniowo kosztowne, 
+        co skutkuje wydłużonym czasem uczenia.
+     </p>
+    </li>
+    <li>
+      <h3>Często zastępowalne:</h3>
+      <p>
+        RNN są stosunkowo wymagające obliczeniowo, 
+        co może sprawić, że dla niektórych zastosowań są one mniej 
+        praktyczne niż inne architektury sieci neuronowych.
+      </p>
+    </li>
+</ul>
 
 <div class="bottom-nav">
   <a routerLink="/welcome">

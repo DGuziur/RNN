@@ -8,3 +8,24 @@ h1, h2, h3 {
     display: flex;
     justify-content: space-between;
 }
+
+.image-container {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 64px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: bold;
+}
