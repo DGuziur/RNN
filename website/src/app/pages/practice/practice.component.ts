@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CodeExample } from 'src/app/components/code-example.component';
+import { RNN_FULL_CODE } from 'src/app/config/rnn-code.helper';
 
 
 @Component({
@@ -9,6 +10,8 @@ import { CodeExample } from 'src/app/components/code-example.component';
   imports: [ CodeExample ],
   standalone: true
 })
+
 export class PracticeComponent {
+  fullCode: string = RNN_FULL_CODE
 
 }
