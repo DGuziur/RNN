@@ -15,7 +15,9 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 registerLocaleData(en);
 
@@ -33,8 +35,9 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     IconsProviderModule,
     NzLayoutModule,
-    NzMenuModule
-  ],
+    NzMenuModule,
+    SocketIoModule.forRoot(config)
+    ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
   ],

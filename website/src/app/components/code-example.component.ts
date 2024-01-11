@@ -1,13 +1,17 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, OnDestroy, Output, inject } from '@angular/core';
 import { AceConfigInterface, AceModule } from 'ngx-ace-wrapper';
 import { DEFAULT_ACE_CONFIG } from '../config/default-ace-config.config';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { PythonService } from '../services/python.service';
+import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
 
 import 'brace';
 import 'brace/mode/python';
 import 'brace/theme/monokai';
-
+import 'brace/ext/language_tools'
 
 @Component({
   selector: 'code',
@@ -20,6 +24,10 @@ import 'brace/theme/monokai';
     <ace [config]="config" [(value)]='value'></ace>
     <div *ngIf="canBeRun" class="run">
       <button class="run-btn" nz-button nzType="primary" (click)="runScript(value)">Run</button>
+    </div>
+    <div class="output">
+      {{ codeOutput }}
+      <input type="text" autofocus='true' [(ngModel)]='inputValue' (keydown.enter)="sendInput(inputValue)">
     </div>
   </div> `,
   styles: [`
@@ -48,24 +56,65 @@ import 'brace/theme/monokai';
     width: 100%;
   }
 
+  .output {
+    width: 100%;
+    height: 200px;
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-y: auto;
+    padding: 10px;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+    margin: 5px 0;
+    content: '_';
+    animation: blink-caret 1s infinite;
+}
+
   `]
   ,
-  imports: [ AceModule, NzButtonModule, NzToolTipModule ],
+  imports: [ AceModule, FormsModule, NzButtonModule, NzToolTipModule ],
   standalone: true
 })
 
-export class CodeExample {
+export class CodeExample implements OnDestroy{
+  pythonService = inject(PythonService)
   @Input() title: string = '';
   @Input() config: AceConfigInterface = DEFAULT_ACE_CONFIG;
   @Input() canBeRun: boolean = false;
   @Input() @Output() value: string = '';
-  xx: string = 'a'
+  subscribtion: Subscription | null = null;
+  codeOutput: string = '';
+  inputValue: string = '';
 
   copyText(): void {
     navigator.clipboard.writeText(this.value)
   }
 
   runScript(value: string): void {
-    alert(value)
+    this.subscribtion?.unsubscribe();
+    this.pythonService.connect()
+    this.pythonService.sendInput(value)
+    this.subscribtion = this.pythonService.getOutput().pipe().subscribe((data: any) => {
+      this.codeOutput = data
+      console.log(this.codeOutput)
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.subscribtion?.unsubscribe();
+    this.pythonService.disconnect();
+  }
+
+  sendInput(value: string): void {
+    console.log(value)
+    this.inputValue = ''
   }
 }
