@@ -18,16 +18,15 @@ app.use(bodyParser.json());
 io.on('connection', (socket) => {
     console.log('Client connected');
     socket.on('runPythonCode', (code) => {
-        const pythonCode = code;
+        const pythonProcess = spawn('python', ['-u', '-c', code]);
 
-        const pythonProcess = spawn('python', ['-c', pythonCode]);
-
+        pythonProcess.stdout.setEncoding('utf-8');
         pythonProcess.stdout.on('data', (data) => {
             socket.emit('output',`${data}`);
         });
         
         socket.on('input', (data) => {
-            pythonProcess.stdin.write(data);
+            pythonProcess.stdin.write(data + '\n');
         });
     
         pythonProcess.on('close', (code) => {

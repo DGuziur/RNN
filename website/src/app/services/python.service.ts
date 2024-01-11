@@ -18,8 +18,12 @@ export class PythonService {
     this.socket.disconnect();
   }
 
+  runCode(code: string): void {
+    this.socket.emit('runPythonCode', code);
+  }
+
   sendInput(input: string): void {
-    this.socket.emit('runPythonCode', input);
+    this.socket.emit('input', input);
   }
 
   getOutput(): Observable<string> {

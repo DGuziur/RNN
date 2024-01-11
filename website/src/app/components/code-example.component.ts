@@ -61,7 +61,6 @@ import 'brace/ext/language_tools'
     height: 200px;
     background-color: black;
     color: white;
-    font-family: 'Courier New', Courier, monospace;
     overflow-y: auto;
     padding: 10px;
   }
@@ -71,12 +70,10 @@ import 'brace/ext/language_tools'
     outline: none;
     background-color: transparent;
     color: white;
-    font-family: 'Courier New', Courier, monospace;
     width: 100%;
     margin: 5px 0;
-    content: '_';
     animation: blink-caret 1s infinite;
-}
+  }
 
   `]
   ,
@@ -101,10 +98,9 @@ export class CodeExample implements OnDestroy{
   runScript(value: string): void {
     this.subscribtion?.unsubscribe();
     this.pythonService.connect()
-    this.pythonService.sendInput(value)
+    this.pythonService.runCode(value)
     this.subscribtion = this.pythonService.getOutput().pipe().subscribe((data: any) => {
       this.codeOutput = data
-      console.log(this.codeOutput)
     })
   }
 
@@ -114,7 +110,7 @@ export class CodeExample implements OnDestroy{
   }
 
   sendInput(value: string): void {
-    console.log(value)
+    this.pythonService.sendInput(value)
     this.inputValue = ''
   }
 }
