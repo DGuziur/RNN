@@ -1,6 +1,5 @@
 const app = require('express')();
 const port = 8080;
-const bodyParser = require('body-parser');
 const http = require('http');
 const socketIo = require('socket.io');
 const { spawn } = require('child_process');
@@ -12,8 +11,6 @@ const io = socketIo(server, {
         methods: ["GET", "POST"]
     }
 });
-
-app.use(bodyParser.json());
 
 io.on('connection', (socket) => {
     console.log('Client connected');
@@ -31,6 +28,7 @@ io.on('connection', (socket) => {
     
         pythonProcess.on('close', (code) => {
             console.log(`Child process exited with code ${code}`);
+            socket.emit('output',`Process exited with code ${code}`);
         });
     
         socket.on('disconnect', () => {
