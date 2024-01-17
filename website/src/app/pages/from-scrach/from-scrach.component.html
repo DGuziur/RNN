@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="code">
+        <code title="" [canBeRun]="true" [value]="'import numpy as np\n\n'"></code>
+    </div>
+
+    <div class="guide">
+        <h2>
+            {{ getGuideText() }}
+        </h2>
+        <div class="guide-code">
+            <code [title]="getStepTitle()" [canBeRun]="false" [value]="getGuideCode()"></code>
+        </div>
+        <div class="step-navigation">
+            <button *ngIf="step != 0" nz-button nzType="primary" (click)="previousStep()">Cofnij</button>
+            <button *ngIf="step != codeSteps.length - 1" nz-button nzType="primary" (click)="nextStep()">Dalej</button>
+        </div>
+    </div>
+</div>

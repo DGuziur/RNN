@@ -1,62 +1,66 @@
 <nz-layout class="app-layout">
-    <nz-sider class="menu-sidebar"
-              nzCollapsible
-              nzWidth="256px"
-              nzBreakpoint="md"
-              [(nzCollapsed)]="isCollapsed"
-              [nzTrigger]="null">
-      <div class="sidebar-logo" >
-        <a routerLink="/welcome">
-          <img src="https://svgcrown.com/file/pug/1.png" alt=":(">
-          <h1>AI BC</h1>
-        </a>
-      </div>
-      <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-        <li nz-submenu nzOpen nzTitle="Teoria" nzIcon="read">
-          <ul>
-            <li nz-menu-item nzMatchRouter>
-              <a routerLink="/what-are-RNN">Czym są</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-              <a>Po co</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-              <a>Co dalej?</a>
-            </li>
-          </ul>
-        </li>
-        <li nz-submenu nzOpen nzTitle="Praktyka" nzIcon="bulb">
-          <ul>
-            <li nz-menu-item nzMatchRouter>
-              <a routerLink="practice">Proste RNN</a>
-            </li>
-          </ul>
-        </li>
-        <li nz-submenu nzOpen nzTitle="Quiz" nzIcon="trophy">
-            <ul>
-              <li nz-menu-item nzMatchRouter>
-                <a>Quiz</a>
-              </li>
-            </ul>
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <a routerLink="/welcome">
+        <span class="menu-main-icon" nz-icon nzType="deployment-unit"></span>
+        <span class="logo">~AI BC~</span>
+      </a>
+    </div>
+    <ul
+      nz-menu
+      nzTheme="dark"
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+    >
+      <li nz-submenu nzOpen nzTitle="Teoria" nzIcon="read">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/what-are-RNN">Czym są sieci RNN</a>
           </li>
-      </ul>
-    </nz-sider>
-    <nz-layout>
-      <nz-header>
-        <div class="app-header">
-          <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-              <span class="trigger"
-                 nz-icon
-                 [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'">
-              </span>
+          <li nz-menu-item nzMatchRouter>
+            <a>Wady i zalety</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a>Zastosowanie</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a>Co dalej?</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Praktyka" nzIcon="bulb">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="practice">Proste RNN</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <span
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          >
           </span>
-        </div>
-      </nz-header>
-      <nz-content>
-        <div class="inner-content">
-          <router-outlet></router-outlet>
-        </div>
-      </nz-content>
-    </nz-layout>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
   </nz-layout>
-  
+</nz-layout>

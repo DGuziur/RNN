@@ -1,14 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PythonService {
-
-  constructor(private socket: Socket) {}
+  private socket = inject(Socket)
 
   connect(): void {
     this.socket.connect();

@@ -22,9 +22,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [
-    AppComponent  
-    ],
+  declarations: [AppComponent],
   imports: [
     LayoutComponent,
     AppRoutingModule,
@@ -36,11 +34,9 @@ registerLocaleData(en);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
-    SocketIoModule.forRoot(config)
-    ],
-  providers: [
-    { provide: NZ_I18N, useValue: en_US }
+    SocketIoModule.forRoot(config),
   ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

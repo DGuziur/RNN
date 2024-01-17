@@ -1,4 +1,12 @@
-import { Component, ElementRef, Input, OnDestroy, Output, ViewChild, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  Output,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { AceConfigInterface, AceModule } from 'ngx-ace-wrapper';
 import { DEFAULT_ACE_CONFIG } from '../config/default-ace-config.config';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
@@ -10,33 +18,57 @@ import { Subscription } from 'rxjs';
 import 'brace';
 import 'brace/mode/python';
 import 'brace/theme/monokai';
-import 'brace/ext/language_tools'
+import 'brace/ext/language_tools';
 
 @Component({
   selector: 'code',
-  template: ` 
-  <div class="ace">
-    <div class="title">
-      {{ title }}
-      <span nz-tooltip="Copied!" nzTooltipTrigger="click" (click)="copyText()">Copy</span>
+  template: `
+    <div class="ace">
+      <div class="title">
+        {{ title }}
+        <span nz-tooltip="Copied!" nzTooltipTrigger="click" (click)="copyText()"
+          >Copy</span
+        >
+      </div>
+      <ace [config]="config" [(value)]="value"></ace>
+      <div *ngIf="isTerminalOpen" class="output" (click)="focusInput()">
+        {{ codeOutput }}
+        <input
+          #terminal
+          type="text"
+          autofocus="true"
+          [(ngModel)]="inputValue"
+          (keydown.enter)="sendInput(inputValue)"
+        />
+      </div>
+      <div *ngIf="canBeRun" class="run">
+        <button
+          *ngIf="!isTerminalOpen"
+          class="run-btn"
+          nz-button
+          nzType="primary"
+          (click)="runScript(value)"
+        >
+          Run
+        </button>
+        <button
+          *ngIf="isTerminalOpen"
+          class="run-btn"
+          nz-button
+          nzType="primary"
+          (click)="stopScript()"
+        >
+          Zamknij
+        </button>
+      </div>
     </div>
-    <ace [config]="config" [(value)]='value'></ace>
-    <div *ngIf="isTerminalOpen" class="output" (click)="focusInput()">
-      {{ codeOutput }}
-      <input #terminal type="text" autofocus='true' [(ngModel)]='inputValue' (keydown.enter)="sendInput(inputValue)">
-    </div>
-    <div *ngIf="canBeRun" class="run">
-      <button *ngIf="!isTerminalOpen" class="run-btn" nz-button nzType="primary" (click)="runScript(value)">Run</button>
-      <button *ngIf="isTerminalOpen" class="run-btn" nz-button nzType="primary" (click)="stopScript()">Zamknij</button>
-    </div>
-  </div> `,
+  `,
   styleUrls: ['./code-example.component.scss'],
-  imports: [ AceModule, FormsModule, NzButtonModule, NzToolTipModule ],
-  standalone: true
+  imports: [AceModule, FormsModule, NzButtonModule, NzToolTipModule],
+  standalone: true,
 })
-
-export class CodeExample implements OnDestroy{
-  pythonService = inject(PythonService)
+export class CodeExample implements OnDestroy {
+  pythonService = inject(PythonService);
   @ViewChild('terminal') terminal: ElementRef | undefined;
   @Input() title: string = '';
   @Input() config: AceConfigInterface = DEFAULT_ACE_CONFIG;
@@ -48,21 +80,24 @@ export class CodeExample implements OnDestroy{
   inputValue: string = '';
 
   ngOnDestroy(): void {
-    this.stopScript()
+    this.stopScript();
   }
 
   copyText(): void {
-    navigator.clipboard.writeText(this.value)
+    navigator.clipboard.writeText(this.value);
   }
 
   runScript(value: string): void {
     this.subscribtion?.unsubscribe();
-    this.isTerminalOpen = true
-    this.pythonService.connect()
-    this.pythonService.runCode(value)
-    this.subscribtion = this.pythonService.getOutput().pipe().subscribe((data: any) => {
-      this.codeOutput += data 
-    })
+    this.isTerminalOpen = true;
+    this.pythonService.connect();
+    this.pythonService.runCode(value);
+    this.subscribtion = this.pythonService
+      .getOutput()
+      .pipe()
+      .subscribe((data: any) => {
+        this.codeOutput += data;
+      });
   }
 
   stopScript(): void {
@@ -73,8 +108,8 @@ export class CodeExample implements OnDestroy{
   }
 
   sendInput(value: string): void {
-    this.pythonService.sendInput(value)
-    this.inputValue = ''
+    this.pythonService.sendInput(value);
+    this.inputValue = '';
   }
 
   focusInput(): void {
