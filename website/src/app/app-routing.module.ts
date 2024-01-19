@@ -1,23 +1,55 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WelcomeComponent } from './pages/welcome/welcome.component';
-import { WhatAreComponent } from './pages/what-are/what-are.component';
-import { PracticeComponent } from './pages/practice/practice.component';
-import { FullCodeComponent } from './pages/full-code/full-code.component';
-import { FromScrachComponent } from './pages/from-scrach/from-scrach.component';
 
 const routes: Routes = [
-  { path: 'welcome', component: WelcomeComponent },
-  { path: 'what-are-RNN', component: WhatAreComponent },
-  { path: 'practice', component: PracticeComponent },
-  { path: 'full-code', component: FullCodeComponent },
-  { path: 'from-scrach', component: FromScrachComponent },
+  {
+    path: 'welcome',
+    loadComponent: () =>
+      import('./pages/welcome/welcome.component').then(
+        (x) => x.WelcomeComponent
+      ),
+  },
+  {
+    path: 'what-are-RNN',
+    loadComponent: () =>
+      import('./pages/what-are/what-are.component').then(
+        (x) => x.WhatAreComponent
+      ),
+  },
+  {
+    path: 'pros-cons',
+    loadComponent: () =>
+      import('./pages/pros-cons/pros-cons.component').then(
+        (x) => x.ProsConsComponent
+      ),
+  },
+  {
+    path: 'practice',
+    loadComponent: () =>
+      import('./pages/practice/practice.component').then(
+        (x) => x.PracticeComponent
+      ),
+  },
+  {
+    path: 'full-code',
+    loadComponent: () =>
+      import('./pages/full-code/full-code.component').then(
+        (x) => x.FullCodeComponent
+      ),
+  },
+  {
+    path: 'from-scrach',
+    loadComponent: () =>
+      import('./pages/from-scrach/from-scrach.component').then(
+        (x) => x.FromScrachComponent
+      ),
+  },
   { path: '**', redirectTo: 'welcome' },
 ];
 
 @NgModule({
   declarations: [],
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

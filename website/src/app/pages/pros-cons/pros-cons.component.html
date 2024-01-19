@@ -1,0 +1,73 @@
+<div class="page-container">
+  <h2>Zalety</h2>
+  <ul>
+    <li>
+      <h3>Przetwarzanie danych sekwencyjnych:</h3>
+      <p>
+        RNN są skuteczne w analizie danych sekwencyjnych, takich jak tekst,
+        czasowe szeregi danych, dźwięk czy obrazy w sekwencji. Ich zdolność do
+        zachowywania kontekstu historycznego czyni je użytecznym narzędziem w
+        wielu dziedzinach.
+      </p>
+    </li>
+    <li>
+      <h3>Modelowanie zależności czasowych:</h3>
+      <p>
+        RNN są idealne do modelowania zależności czasowych między elementami
+        sekwencji. Dzięki temu są często stosowane w prognozowaniu, tłumaczeniu
+        maszynowym i rozpoznawaniu mowy.
+      </p>
+    </li>
+    <li>
+      <h3>Dynamiczne przystosowywanie się:</h3>
+      <p>
+        RNN mogą dostosowywać swoje wewnętrzne reprezentacje w trakcie
+        przetwarzania sekwencji, co pozwala im na radzenie sobie z różnymi
+        długościami sekwencji.
+      </p>
+    </li>
+  </ul>
+  <h2>Wady</h2>
+  <ul>
+    <li>
+      <h3>Problem zanikającego/eksplodującego gradientu:</h3>
+      <p>
+        RNN mają problem z obsługiwanem bardzo długich sekwencji danych. Wynika
+        to z tego, że waga V jest jedna i dzielona pomiędzy całą warstwą ukrytą,
+        z tego wynika że jeśli V jest mniejsze od 1, to waga będzie dążyć do
+        zera, a jeżeli V jest większe od zera, to będzie dążyć do
+        nieskończoności.
+      </p>
+    </li>
+    <li>
+      <h3>Długi proces nauki:</h3>
+      <p>
+        Przetwarzanie sekwencji krok po kroku może być obliczeniowo kosztowne,
+        co skutkuje wydłużonym czasem uczenia.
+      </p>
+    </li>
+    <li>
+      <h3>Często zastępowalne:</h3>
+      <p>
+        RNN są stosunkowo wymagające obliczeniowo, co może sprawić, że dla
+        niektórych zastosowań są one mniej praktyczne niż inne architektury
+        sieci neuronowych.
+      </p>
+    </li>
+  </ul>
+
+  <div class="bottom-nav">
+    <a routerLink="/welcome">
+      <button nz-button nzType="primary">
+        <span nz-icon nzType="left"></span>
+        Czym są RNN
+      </button>
+    </a>
+    <a routerLink="/pros-cons">
+      <button nz-button nzType="primary">
+        Zastosowanie
+        <span nz-icon nzType="right"></span>
+      </button>
+    </a>
+  </div>
+</div>

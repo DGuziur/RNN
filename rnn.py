@@ -1,6 +1,4 @@
-import os
 import numpy as np
-import scipy as sp
 
 class DataGenerator:
     def __init__(self, path):
