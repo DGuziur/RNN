@@ -27,20 +27,18 @@ describe('CodeExampleComponent', () => {
   });
 
   it('terminal should init as false', () => {
-    expect(component.isTerminalOpen).toBeFalsy;
+    expect(component.isTerminalOpen).toBe(false);
   });
 
   it('subscribe should init as null', () => {
-    expect(component.subscribtion).toBeNull;
+    expect(component.subscribtion).toBe(null);
   });
 
   it('runScript works', () => {
     component.runScript('test');
     expect(component.isTerminalOpen).toBe(true);
     expect(component.subscribtion).not.toBeNull;
-  });
 
-  it('stopScript works', () => {
     component.stopScript;
     expect(component.isTerminalOpen).toBeFalsy;
     expect(component.subscribtion).toBeNull;

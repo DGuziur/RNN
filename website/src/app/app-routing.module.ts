@@ -24,6 +24,20 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'for-what',
+    loadComponent: () =>
+      import('./pages/for-what/for-what.component').then(
+        (x) => x.ForWhatComponent
+      ),
+  },
+  {
+    path: 'what-next',
+    loadComponent: () =>
+      import('./pages/what-next/what-next.component').then(
+        (x) => x.WhatNextComponent
+      ),
+  },
+  {
     path: 'practice',
     loadComponent: () =>
       import('./pages/practice/practice.component').then(

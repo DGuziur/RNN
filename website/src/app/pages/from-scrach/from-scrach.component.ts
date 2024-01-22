@@ -8,31 +8,30 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
   selector: 'app-from-scrach',
   templateUrl: './from-scrach.component.html',
   styleUrls: ['./from-scrach.component.scss'],
-  imports: [ CodeExample, NzButtonModule, NgIf ],
-  standalone: true
+  imports: [CodeExample, NzButtonModule, NgIf],
+  standalone: true,
 })
-
 export class FromScrachComponent {
   codeSteps = CODE_STEPS;
   step: number = 0;
 
   getGuideText(): string {
-    return this.codeSteps[this.step].label
+    return this.codeSteps[this.step].label;
   }
 
   getGuideCode(): string {
-    return this.codeSteps[this.step].value
+    return this.codeSteps[this.step].value;
   }
 
   getStepTitle(): string {
-    return `Krok: ${this.step + 1}/${this.codeSteps.length}`
+    return `Krok: ${this.step + 1}`;
   }
 
   nextStep(): void {
-    this.step++
+    this.step++;
   }
 
   previousStep(): void {
-    this.step--
+    this.step--;
   }
 }

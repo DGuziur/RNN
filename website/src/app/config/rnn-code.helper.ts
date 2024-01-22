@@ -1,7 +1,6 @@
 export const RNN_FULL_CODE = `
 import os
 import numpy as np
-import scipy as sp
 
 class DataGenerator:
     def __init__(self, path):
@@ -263,11 +262,11 @@ data_generator = DataGenerator('data.txt')
 rnn = RNN(hidden_size=200,data_generator=data_generator, sequence_length=25, learning_rate=1e-3)
 rnn.train()
 
-print('Przeszkolone! Wpisz nazwę dinozaura a ja postaram się zgadnąć o co Ci chodzi! Aby przestać wpisz stop')
+print('Przeszkolone! Wpisz niedokonczone slowo a siec postara sie je uzupelnic, przy okazji zamieniajac je w dinozaura')
 while (True):
     test = input()
     if test == 'stop':
         break
     print('\\nCzy chodziło ci o:')
     rnn.predict(test)
-`
+`;
