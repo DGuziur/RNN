@@ -1,4 +1,3 @@
-# RNN
-RNN for Stock Market Forecast
+# Projekt
 
-Prognozowanie giełdy finansowej z użyciem sieci neuronowej RNN w Python 
+Aplikacja Internetowa do nauki sieci neuronowych RNN
