@@ -86,7 +86,7 @@ for i in range(X.shape[0]):
 predictions = np.array(predictions) * np.std(prices) + np.mean(prices)
 
 # Wykres wyników
-plt.plot(prices, label='Actual Prices')
+plt.plot(prices)
 plt.plot(predictions, label='Predicted Prices')
 plt.legend()
 plt.show()
